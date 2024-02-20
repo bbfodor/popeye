@@ -12,16 +12,18 @@ export default function Home() {
           <p className='text-sm font-semibold text-gray-700'>Popeye is now public!</p>
         </div>
         <h1 className='max-w-4xl text-5xl font-bold md:text-6xl lg:text-7xl'>
-          Chat with your <span className='text-orange-600'>documents</span> in seconds.
+          Elevate your <span className='text-orange-600'>documents</span>. Chat instantly.
         </h1>
-        <p className='mt-5 max-w-prose text-zinc-700 sm:text-lg'>
-          Popeye allows you to have conversations with any PDF document. Simply upload your file and start asking
-          questions right away.
+
+        <p className='mt-7 max-w-prose text-zinc-700 sm:text-lg'>
+          Popeye allows you to have conversations about any PDF document. Simply upload your file and start prompting
+          right away.
         </p>
 
-        <Link className={buttonVariants({ size: 'lg', className: 'mt-5' })} href='/dashboard' target='_blank'>
+        <Link className={buttonVariants({ size: 'lg', className: 'mt-7' })} href='/dashboard' target='_blank'>
           Get started <ArrowRight className='ml-2 h-5 w-5' />
         </Link>
+        <p className='mt-3 max-w-prose text-zinc-700 sm:text-sm italic'>With the power of AI.</p>
       </MaxWidthWrapper>
 
       <div>
@@ -74,9 +76,11 @@ export default function Home() {
       <div className='mx-auto mb-32 mt-32 max-w-5xl sm:mt-56'>
         <div className='mb-12 px-6 lg:px-8'>
           <div className='mx-auto max-w-2xl sm:text-center'>
-            <h2 className='mt-2 font-bold text-4xl text-gray-900 sm:text-5xl'>Start chatting in minutes</h2>
+            <h2 className='mt-2 font-bold text-4xl text-gray-900 sm:text-5xl'>
+              Unlock <span className='text-orange-600'>insights</span> in minutes.
+            </h2>
             <p className='mt-4 text-lg text-gray-600'>
-              Chatting to your PDF files has never been easier than with Popeye
+              Querying your PDF files has never been easier than with Popeye.
             </p>
           </div>
         </div>
