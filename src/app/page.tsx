@@ -1,4 +1,5 @@
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
+import TypingAnimation from '@/components/TypingAnimation';
 import { buttonVariants } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
@@ -11,9 +12,14 @@ export default function Home() {
         <div className='mx-auto mb-4 flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full border border-gray-200 bg-white px-7 py-2 shadow-md backdrop-blur transition-all hover:border-gray-300 hover:bg-white/50'>
           <p className='text-sm font-semibold text-gray-700'>Popeye is now public!</p>
         </div>
-        <h1 className='max-w-4xl text-5xl font-bold md:text-6xl lg:text-7xl'>
-          Elevate your <span className='text-orange-600'>documents</span>. Chat instantly.
-        </h1>
+        <div className='max-w-4xl text-5xl font-bold md:text-6xl lg:text-7xl'>
+          <h1>
+            Elevate your <span className='text-orange-600'>documents</span>.
+          </h1>
+          <h1>
+            <TypingAnimation /> instantly.
+          </h1>
+        </div>
 
         <p className='mt-7 max-w-prose text-zinc-700 sm:text-lg'>
           Popeye allows you to have conversations about any PDF document. Simply upload your file and start prompting
