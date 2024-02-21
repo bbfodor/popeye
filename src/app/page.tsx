@@ -18,10 +18,10 @@ export default function Home() {
           </h1>
           <h1 className='leading-snug'>
             <TypingAnimation
-              sequence={['Prompt', 900, 'Ask', 750, 'Learn', 850, 'Chat']}
+              sequence={['Prompt', 850, 'Ask', 750, 'Learn', 850, 'Chat']}
               preRenderFirstString={true}
               cursor={false}
-              speed={12}
+              speed={15}
               deletionSpeed={30}
               className='bg-gradient-to-r from-violet-700 to-pink-700 text-transparent bg-clip-text'
             />{' '}
