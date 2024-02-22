@@ -9,7 +9,7 @@ const Navbar = () => {
       <MaxWidthWrapper>
         <div className='flex h-14 items-center justify-between border-b border-zinc-200'>
           <Link href='/' className='flex x-40'>
-            <span className='font-semibold text-orange-600'>Popeye</span>
+            <span className='font-semibold text-primary'>Popeye</span>
             <span className='font-extrabold'>.</span>
           </Link>
 
