@@ -28,6 +28,7 @@ export const appRouter = router({
 
     return { success: true };
   }),
+
   getUserFiles: privateProcedure.query(async ({ ctx }) => {
     const { user, userId } = ctx;
 
@@ -37,6 +38,7 @@ export const appRouter = router({
       },
     });
   }),
+
   getfile: privateProcedure
     .input(
       z.object({
@@ -56,6 +58,9 @@ export const appRouter = router({
 
       return file;
     }),
+
+  // TODO -- modifyFile route (rename etc., db + uploadthing sync)
+
   deleteFile: privateProcedure
     .input(
       z.object({
@@ -78,6 +83,8 @@ export const appRouter = router({
           id: input.id,
         },
       });
+
+      // TODO -- Delete file from uploadthing as well
 
       return file;
     }),
