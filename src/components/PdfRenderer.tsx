@@ -19,13 +19,8 @@ import { useToast } from './ui/use-toast';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
-interface PdfRendererProps {
-  url: string;
-}
-
-const PdfRenderer = ({ url }: PdfRendererProps) => {
-  const { toast } = useToast();
-  const { width, ref } = useResizeDetector();
+const PdfRenderer = (props: { url: string }) => {
+  const { url } = props;
 
   const [numPages, setNumPages] = useState<number>();
   const [currPage, setCurrPage] = useState<number>(1);
@@ -34,6 +29,9 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
   const [renderedScale, setRenderedScale] = useState<number | null>(null);
 
   const isLoading = renderedScale !== scale;
+
+  const { toast } = useToast();
+  const { width, ref } = useResizeDetector();
 
   const CustomPageValidator = z.object({
     page: z.string().refine((num) => Number(num) > 0 && Number(num) <= numPages!),
@@ -77,11 +75,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
             <Input
               {...register('page')}
               className={cn('w-12 h-8 focus-visible:ring-zinc-400', errors.page && 'focus-visible:ring-primary')}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  handleSubmit(handlePageSubmit)();
-                }
-              }}
+              onKeyDown={(event) => event.key === 'Enter' && handleSubmit(handlePageSubmit)()}
             />
             <p className='text-zinc-700 text-sm space-x-1'>
               <span>/</span>
@@ -110,6 +104,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
                 {scale * 100}%<ChevronDown className='h-3 w-3 opacity-50' />
               </Button>
             </DropdownMenuTrigger>
+
             <DropdownMenuContent>
               <DropdownMenuItem onSelect={() => setScale(1)}>100%</DropdownMenuItem>
               <DropdownMenuItem onSelect={() => setScale(1.5)}>150%</DropdownMenuItem>

@@ -7,31 +7,23 @@ import { Button } from './ui/button';
 import { Dialog, DialogContent, DialogTrigger } from './ui/dialog';
 import { useToast } from './ui/use-toast';
 
-interface PdfFullscreenProps {
-  fileUrl: string;
-}
-
-const PdfFullscreen = ({ fileUrl }: PdfFullscreenProps) => {
-  const { width, ref } = useResizeDetector();
-  const { toast } = useToast();
+const PdfFullscreen = (props: { fileUrl: string }) => {
+  const { fileUrl } = props;
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [numPages, setNumPages] = useState<number>();
 
+  const { width, ref } = useResizeDetector();
+  const { toast } = useToast();
+
   return (
-    <Dialog
-      open={isOpen}
-      onOpenChange={(v) => {
-        if (!v) {
-          setIsOpen(v);
-        }
-      }}
-    >
+    <Dialog open={isOpen} onOpenChange={(open) => !open && setIsOpen(open)}>
       <DialogTrigger asChild onClick={() => setIsOpen(true)}>
         <Button aria-label='fullscreen' variant='ghost' className='gap-1.5'>
           <Expand className='h-4 w-4' />
         </Button>
       </DialogTrigger>
+
       <DialogContent className='max-w-7xl w-full'>
         <SimpleBar autoHide={false} className='max-h-[calc(100vh-10rem)] mt-6'>
           <div ref={ref}>

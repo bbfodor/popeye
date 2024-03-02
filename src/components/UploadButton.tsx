@@ -132,14 +132,7 @@ const UploadButton = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
-    <Dialog
-      open={isOpen}
-      onOpenChange={(isVisible) => {
-        if (!isVisible) {
-          setIsOpen(isVisible);
-        }
-      }}
-    >
+    <Dialog open={isOpen} onOpenChange={(open) => !open && setIsOpen(open)}>
       <DialogTrigger onClick={() => setIsOpen(true)} asChild>
         <Button>Upload PDF</Button>
       </DialogTrigger>

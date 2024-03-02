@@ -8,8 +8,7 @@ export const appRouter = router({
   authCallback: publicProcedure.query(async () => {
     const { getUser } = getKindeServerSession();
     const user = await getUser();
-
-    if (!user?.id || !user.email) throw new TRPCError({ code: 'UNAUTHORIZED' });
+    if (!(user?.id && user.email)) throw new TRPCError({ code: 'UNAUTHORIZED' });
 
     const dbUser = await db.user.findFirst({
       where: {
@@ -30,7 +29,7 @@ export const appRouter = router({
   }),
 
   getUserFiles: privateProcedure.query(async ({ ctx }) => {
-    const { user, userId } = ctx;
+    const { userId } = ctx;
 
     return await db.file.findMany({
       where: {
@@ -59,6 +58,24 @@ export const appRouter = router({
       // TODO -- check if file is on uploadthing
 
       return file;
+    }),
+
+  getFileUploadStatus: privateProcedure
+    .input(
+      z.object({
+        fileId: z.string(),
+      })
+    )
+    .query(async ({ ctx, input }) => {
+      const file = await db.file.findFirst({
+        where: {
+          id: input.fileId,
+          userId: ctx.userId,
+        },
+      });
+      if (!file) return { status: 'PENDING' as const };
+
+      return { status: file.uploadStatus };
     }),
 
   // TODO -- modifyFile route (rename etc., db + uploadthing sync)

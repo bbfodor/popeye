@@ -12,10 +12,12 @@ export default function Home() {
         <div className='mx-auto mb-4 flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full border border-gray-200 bg-white px-7 py-2 shadow-md backdrop-blur transition-all hover:border-gray-300 hover:bg-white/50'>
           <p className='text-sm font-semibold text-gray-700'>Popeye is now public!</p>
         </div>
+
         <div className='max-w-4xl font-bold -tracking-[0.1px] text-5xl leading-tight md:text-6xl md:leading-tight lg:text-7xl lg:leading-tight'>
           <h1>
             Elevate your <span className='text-primary'>documents</span>.
           </h1>
+
           <h1 className='leading-snug'>
             <TypingAnimation
               sequence={['Prompt', 850, 'Ask', 750, 'Learn', 850, 'Chat']}
@@ -37,6 +39,7 @@ export default function Home() {
         <Link className={buttonVariants({ size: 'lg', className: 'mt-7' })} href='/dashboard' target='_blank'>
           Get started <ArrowRight className='ml-2 h-5 w-5' />
         </Link>
+
         <p className='mt-3 max-w-prose text-zinc-700 sm:text-sm italic'>With the power of AI.</p>
       </MaxWidthWrapper>
 
@@ -93,6 +96,7 @@ export default function Home() {
             <h2 className='mt-2 font-bold -tracking-[0.1px] text-4xl text-gray-900 sm:text-5xl'>
               Unlock <span className='text-primary'>insights</span> in minutes.
             </h2>
+
             <p className='mt-4 text-lg text-gray-600'>
               Querying your PDF files has never been easier than with Popeye.
             </p>
@@ -113,6 +117,7 @@ export default function Home() {
               </span>
             </div>
           </li>
+
           <li className='md:flex-1'>
             <div className='flex flex-col space-y-2 border-l-4 border-zinc-300 py-2 pl-4 md:border-l-0 md:border-t-2 md:pb-0 md:pl-0 md:pt-4'>
               <span className='text-sm font-medium text-primary'>Step 2</span>
@@ -122,6 +127,7 @@ export default function Home() {
               </span>
             </div>
           </li>
+
           <li className='md:flex-1'>
             <div className='flex flex-col space-y-2 border-l-4 border-zinc-300 py-2 pl-4 md:border-l-0 md:border-t-2 md:pb-0 md:pl-0 md:pt-4'>
               <span className='text-sm font-medium text-primary'>Step 3</span>
