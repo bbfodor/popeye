@@ -1,14 +1,19 @@
 import { cn } from '@/lib/utils';
 import { Message, MessageJsx } from '@/types/message';
 import { format } from 'date-fns';
+import { forwardRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Icons } from '../Icons';
 
-const Message = (props: { message: Message | MessageJsx; isNextMessageSamePerson: boolean }) => {
-  const { message, isNextMessageSamePerson } = props;
+interface MessageProps {
+  message: Message | MessageJsx;
+  isNextMessageSamePerson: boolean;
+}
 
+const Message = forwardRef<HTMLDivElement, MessageProps>(({ message, isNextMessageSamePerson }, ref) => {
   return (
     <div
+      ref={ref}
       className={cn('flex items-end', {
         'justify-end': message.isUserMessage,
       })}
@@ -67,6 +72,8 @@ const Message = (props: { message: Message | MessageJsx; isNextMessageSamePerson
       </div>
     </div>
   );
-};
+});
+
+Message.displayName = 'Message';
 
 export default Message;

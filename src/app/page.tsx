@@ -19,6 +19,7 @@ export default function Home() {
           </h1>
 
           <h1 className='leading-snug'>
+            {/* TODO -- if scroll back up then repeat animation (@mantine/hooks) */}
             <TypingAnimation
               sequence={['Prompt', 850, 'Ask', 750, 'Learn', 850, 'Chat']}
               preRenderFirstString={true}
