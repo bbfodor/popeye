@@ -12,11 +12,11 @@ import { Button } from './ui/button';
 const Dashboard = () => {
   const [currentlyDeletingFile, setCurrentlyDeletingFile] = useState<string | null>(null);
 
-  const utils = trpc.useContext();
+  const trpcUtils = trpc.useUtils();
   const { data: files, isLoading } = trpc.getUserFiles.useQuery();
   const { mutate: deleteFile } = trpc.deleteFile.useMutation({
     onSuccess: () => {
-      utils.getUserFiles.invalidate();
+      trpcUtils.getUserFiles.invalidate();
     },
     onMutate({ id }) {
       setCurrentlyDeletingFile(id);
