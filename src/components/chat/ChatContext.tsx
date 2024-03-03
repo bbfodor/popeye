@@ -24,24 +24,22 @@ export const ChatContextProvider = (props: { fileId: string; children: ReactNode
   const { toast } = useToast();
 
   const { mutate: sendMessage } = useMutation({
-    mutationFn: async ({ message }: { message: string }) => {
+    mutationFn: async (mutationProps: { msg: string }) => {
       const response = await fetch('/api/message', {
         method: 'POST',
         body: JSON.stringify({
           fileId,
-          message,
+          message: mutationProps.msg,
         }),
       });
-      if (!response) throw new Error('Failed to send message');
+      if (!response.ok) throw new Error('Failed to send message');
 
       return response.body;
     },
   });
 
-  const addMessage = () => sendMessage({ message });
-  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setMessage(event.target.value);
-  };
+  const addMessage = () => sendMessage({ msg: message });
+  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => setMessage(event.target.value);
 
   return (
     <ChatContext.Provider
