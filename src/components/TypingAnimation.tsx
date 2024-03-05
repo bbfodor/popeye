@@ -1,7 +1,7 @@
 'use client';
 
-import { TypeAnimation, TypeAnimationProps } from 'react-type-animation';
+import { TypeAnimation } from 'react-type-animation';
 
-const TypingAnimation = (props: TypeAnimationProps) => <TypeAnimation {...props} />;
+const TypingAnimation = (props: any) => <TypeAnimation {...props} />;
 
 export default TypingAnimation;
