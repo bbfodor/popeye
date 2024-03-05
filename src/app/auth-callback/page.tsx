@@ -1,17 +1,23 @@
 'use client';
 
+import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs';
 import { Loader2 } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { trpc } from '../_trpc/client';
 
 const Page = () => {
   const router = useRouter();
-
   const searchParams = useSearchParams();
+
+  const { isAuthenticated, isLoading } = useKindeBrowserClient();
+  if (isLoading) return <Loader2 className='h-8 w-8 animate-spin text-zinc-800' />;
+  if (!isAuthenticated) router.push('/sign-in');
+
   const origin = searchParams.get('origin');
 
   trpc.authCallback.useQuery(undefined, {
     onSuccess: ({ success }) => success && router.push(origin ? `/${origin}` : '/dashboard'),
+    // TODO -- use `origin` after sign in
     onError: (err) => err.data?.code === 'UNAUTHORIZED' && router.push('/sign-in'),
     retry: true,
     retryDelay: 500,

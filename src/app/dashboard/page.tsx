@@ -4,9 +4,10 @@ import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 import { redirect } from 'next/navigation';
 
 const Page = async () => {
-  const { getUser } = getKindeServerSession();
+  const { getUser, isAuthenticated } = getKindeServerSession();
   const user = await getUser();
-  if (!(user && user.id)) redirect('/auth-callback?origin=dashboard');
+  const auth = await isAuthenticated();
+  if (!(user && user.id && auth)) redirect('/auth-callback?origin=dashboard');
 
   const dbUser = await db.user.findFirst({
     where: {
