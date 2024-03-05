@@ -1,5 +1,5 @@
 import { Expand, Loader2 } from 'lucide-react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Document, Page } from 'react-pdf';
 import { useResizeDetector } from 'react-resize-detector';
 import SimpleBar from 'simplebar-react';
@@ -13,7 +13,10 @@ const PdfFullscreen = (props: { fileUrl: string }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [numPages, setNumPages] = useState<number>();
 
-  const { width, ref } = useResizeDetector();
+  const pdfRef = useRef(null);
+  const { width } = useResizeDetector({
+    targetRef: pdfRef,
+  });
   const { toast } = useToast();
 
   return (
@@ -26,7 +29,7 @@ const PdfFullscreen = (props: { fileUrl: string }) => {
 
       <DialogContent className='max-w-7xl w-full'>
         <SimpleBar autoHide={false} className='max-h-[calc(100vh-10rem)] mt-6'>
-          <div ref={ref}>
+          <div ref={pdfRef}>
             <Document
               loading={
                 <div className='flex justify-center'>
