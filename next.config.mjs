@@ -5,6 +5,9 @@ const nextConfig = {
     config.resolve.alias.encoding = false;
     return config;
   },
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
 };
 
 export default nextConfig;
