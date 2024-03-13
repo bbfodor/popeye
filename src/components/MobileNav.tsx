@@ -1,5 +1,6 @@
 'use client';
 
+import { LoginLink, LogoutLink, RegisterLink } from '@kinde-oss/kinde-auth-nextjs';
 import { ArrowRight, Menu } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -13,10 +14,8 @@ const MobileNav = ({ isAuth }: { isAuth: boolean }) => {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (isOpen) toggleOpen();
+    setOpen(false);
   }, [pathname]);
-
-  const closeOnCurrent = (href: string) => pathname === href && toggleOpen();
 
   return (
     <div className='sm:hidden'>
@@ -28,32 +27,18 @@ const MobileNav = ({ isAuth }: { isAuth: boolean }) => {
             {!isAuth ? (
               <>
                 <li>
-                  <Link
-                    onClick={() => closeOnCurrent('/sign-up')}
-                    className='flex items-center w-full font-semibold text-green-600'
-                    href='/sign-up'
-                  >
+                  <RegisterLink className='flex items-center w-full font-semibold text-primary'>
                     Get started
                     <ArrowRight className='ml-2 h-5 w-5' />
-                  </Link>
+                  </RegisterLink>
                 </li>
                 <li className='my-3 h-px w-full bg-gray-300' />
                 <li>
-                  <Link
-                    onClick={() => closeOnCurrent('/sign-in')}
-                    className='flex items-center w-full font-semibold'
-                    href='/sign-in'
-                  >
-                    Sign in
-                  </Link>
+                  <LoginLink className='flex items-center w-full font-semibold'>Sign in</LoginLink>
                 </li>
                 <li className='my-3 h-px w-full bg-gray-300' />
                 <li>
-                  <Link
-                    onClick={() => closeOnCurrent('/pricing')}
-                    className='flex items-center w-full font-semibold'
-                    href='/pricing'
-                  >
+                  <Link className='flex items-center w-full font-semibold' href='/pricing'>
                     Pricing
                   </Link>
                 </li>
@@ -61,19 +46,13 @@ const MobileNav = ({ isAuth }: { isAuth: boolean }) => {
             ) : (
               <>
                 <li>
-                  <Link
-                    onClick={() => closeOnCurrent('/dashboard')}
-                    className='flex items-center w-full font-semibold'
-                    href='/dashboard'
-                  >
+                  <Link className='flex items-center w-full font-semibold' href='/dashboard'>
                     Dashboard
                   </Link>
                 </li>
                 <li className='my-3 h-px w-full bg-gray-300' />
                 <li>
-                  <Link className='flex items-center w-full font-semibold' href='/sign-out'>
-                    Sign out
-                  </Link>
+                  <LogoutLink className='flex items-center w-full font-semibold'>Sign out</LogoutLink>
                 </li>
               </>
             )}
