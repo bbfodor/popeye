@@ -11,13 +11,15 @@ import { Dialog, DialogContent, DialogTrigger } from './ui/dialog';
 import { Progress } from './ui/progress';
 import { useToast } from './ui/use-toast';
 
-const UploadDropzone = () => {
+const UploadDropzone = (props: { isSubscribed: boolean }) => {
+  const { isSubscribed } = props;
+
   const router = useRouter();
 
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
 
-  const { startUpload } = useUploadThing('pdfUploader');
+  const { startUpload } = useUploadThing(isSubscribed ? 'proPlanUploader' : 'freePlanUploader');
   const { toast } = useToast();
 
   const { mutate: startPolling } = trpc.getfile.useMutation({
@@ -53,6 +55,8 @@ const UploadDropzone = () => {
 
         const progressInterval = startSimulatedProgress();
 
+        // TODO -- fix `[UT] Call unsuccessful after X tries.` error
+        // maybe move to https://edgestore.dev/
         const response = await startUpload(acceptedFile);
         if (!response) {
           return toast({
@@ -90,7 +94,8 @@ const UploadDropzone = () => {
                 <p className='mb-2 text-sm text-zinc-700'>
                   <span className='font-semibold'>Click to upload</span> or drag and drop
                 </p>
-                <p className='text-xs text-zinc-500'>PDF (up to 4MB)</p>
+                {/* TODO -- Make size limits more centralized */}
+                <p className='text-xs text-zinc-500'>PDF (up to {isSubscribed ? '16' : '4'}MB)</p>
               </div>
 
               {acceptedFiles && acceptedFiles[0] ? (
@@ -128,7 +133,9 @@ const UploadDropzone = () => {
   );
 };
 
-const UploadButton = () => {
+const UploadButton = (props: { isSubscribed: boolean }) => {
+  const { isSubscribed } = props;
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
@@ -138,7 +145,7 @@ const UploadButton = () => {
       </DialogTrigger>
 
       <DialogContent>
-        <UploadDropzone />
+        <UploadDropzone isSubscribed={isSubscribed} />
       </DialogContent>
     </Dialog>
   );

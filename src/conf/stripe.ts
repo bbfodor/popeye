@@ -1,3 +1,5 @@
+// TODO -- include file size limit, etc. here
+// Use strong types
 export const PLANS = [
   // TODO -- think about OpenAI tokens
   // option for custom plan?
@@ -23,9 +25,9 @@ export const PLANS = [
     slug: 'pro',
     quota: 50,
     price: {
-      amount: 9.99,
+      amount: 10,
       priceIds: {
-        test: 'price_1OqJYHKIwILaJbyE5IbWjN6J',
+        test: 'price_1Ovlv1KIwILaJbyEwzq2tnrZ',
         production: '',
       },
     },

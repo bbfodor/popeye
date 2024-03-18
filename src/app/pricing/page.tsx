@@ -16,10 +16,10 @@ const Page = async () => {
     {
       plan: 'Free',
       tagline: 'For small side projects.',
-      quota: 10,
+      quota: PLANS.find((p) => p.slug === 'free')!.quota,
       features: [
         {
-          text: '5MB file size limit',
+          text: '4MB file size limit',
           footnote: 'The maximum file size of a single PDF file.',
         },
         {
@@ -42,7 +42,7 @@ const Page = async () => {
       quota: PLANS.find((p) => p.slug === 'pro')!.quota,
       features: [
         {
-          text: '25MB file size limit',
+          text: '16MB file size limit',
           footnote: 'The maximum file size of a single PDF file.',
         },
         {
@@ -157,6 +157,7 @@ const Page = async () => {
                           variant: 'secondary',
                         })}
                       >
+                        {/* TODO -- Fix this Link based on user state */}
                         {user ? 'Upgrade now' : 'Sign up'}
                         <ArrowRight className='h-5 w-5 ml-1.5' />
                       </Link>
