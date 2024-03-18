@@ -57,6 +57,7 @@ const UserAccountNav = async (props: { email: string | undefined; name: string; 
             <Link href='/dashboard/billing'>Manage Subscription</Link>
           ) : (
             <Link href='/pricing'>
+              {/* TODO -- make this dynamic based on sub state */}
               Upgrade <Gem className='text-primary h-4 w-4 ml-1.5' />
             </Link>
           )}

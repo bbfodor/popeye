@@ -44,7 +44,6 @@ export function constructMetadata({
     },
     icons,
     metadataBase: new URL('https://popeye-one.vercel.app'),
-    themeColor: '#FFF',
     ...(noIndex && {
       robots: {
         index: false,

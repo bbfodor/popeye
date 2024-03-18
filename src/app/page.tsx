@@ -37,6 +37,7 @@ export default function Home() {
           right away.
         </p>
 
+        {/* TODO -- make this dynamic based on user state */}
         <Link className={buttonVariants({ size: 'lg', className: 'mt-7' })} href='/dashboard' target='_blank'>
           Get started <ArrowRight className='ml-2 h-5 w-5' />
         </Link>

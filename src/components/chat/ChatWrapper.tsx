@@ -59,6 +59,7 @@ const ChatWrapper = (props: { fileId: string }) => {
             <p className='text-zinc-500 text-sm'>
               Your <span className='font-medium'>Free</span> plan supports up to 5 pages per PDF
             </p>
+            {/* TODO -- Link to subscribe */}
             <Link
               href='/dashboard'
               className={buttonVariants({

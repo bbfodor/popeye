@@ -50,6 +50,7 @@ const Navbar = async () => {
               </>
             ) : (
               <>
+                {/* TODO -- Button to see sub state & upgrade */}
                 <Link
                   href='/dashboard'
                   className={buttonVariants({
