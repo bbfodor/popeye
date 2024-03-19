@@ -11,6 +11,8 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = constructMetadata();
 
+// TODO -- implement dark mode, etc. https://github.com/mcpdigital/quill/tree/darktheme
+
 export default function RootLayout({
   children,
 }: Readonly<{
