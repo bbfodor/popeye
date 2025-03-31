@@ -9,6 +9,8 @@ Welcome to Popeye, a powerful AI-driven platform that allows you to upload PDF d
 - Upload PDF documents and interact with them through a chat interface
 - Ask questions, extract insights, and summarize content in any language
 - View the document and chat side-by-side with effortless navigation
+- Sign up via various third-party providers including Google and Apple
+- Subscribe to the "Pro plan" for even more features including extended tokens
 
 ![Chat interface](public/dashboard-preview.jpg)
 
